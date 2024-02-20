@@ -18,11 +18,6 @@ import java.util.Set;
 @NoArgsConstructor
 @Data
 public class BpmCandidateSourceInfo {
-
-    @Schema(description = "流程id")
-    @NotNull
-    private String processInstanceId;
-
     @Schema(description = "当前任务ID")
     @NotNull
     private String taskId;
