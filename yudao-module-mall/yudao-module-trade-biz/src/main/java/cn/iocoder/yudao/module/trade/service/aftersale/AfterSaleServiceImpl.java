@@ -245,7 +245,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     @AfterSaleLog(operateType = AfterSaleOperateTypeEnum.MEMBER_DELIVERY)
     public void deliveryAfterSale(Long userId, AppAfterSaleDeliveryReqVO deliveryReqVO) {
         // 校验售后单存在，并状态未退货
-        AfterSaleDO afterSale = tradeAfterSaleMapper.selectById(deliveryReqVO.getId());
+        AfterSaleDO afterSale = tradeAfterSaleMapper.selectByIdAndUserId(deliveryReqVO.getId(), userId);
         if (afterSale == null) {
             throw exception(AFTER_SALE_NOT_FOUND);
         }
@@ -383,7 +383,7 @@ public class AfterSaleServiceImpl implements AfterSaleService {
     @AfterSaleLog(operateType = AfterSaleOperateTypeEnum.MEMBER_CANCEL)
     public void cancelAfterSale(Long userId, Long id) {
         // 校验售后单的状态，并状态待退款
-        AfterSaleDO afterSale = tradeAfterSaleMapper.selectById(id);
+        AfterSaleDO afterSale = tradeAfterSaleMapper.selectByIdAndUserId(id, userId);
         if (afterSale == null) {
             throw exception(AFTER_SALE_NOT_FOUND);
         }
